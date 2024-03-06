@@ -6,9 +6,10 @@ let btn = document.getElementById('btn');
 
 function createCurrencyConverter(rate) {
 
-  let number = rate
+  let number = rate;
 
   function toLocalCurrency(summ) {
+    sumIn.value = summ
     return number = number*summ
   }
   
@@ -21,8 +22,51 @@ btn.onclick = function () {
   let converter = createCurrencyConverter(rateIn.value);
   let res = converter.toLocalCurrency(sumIn.value);
   result.innerText = ` = ${Math.trunc(res)}`;
-
 }
+
+/*  */
+
+const RATE = {usd: 0.9, eur: 1.09,}
+let inputSum = document.getElementById('inputSum');
+let selectCurrency = document.getElementById('selectCurrency');
+let result1 = document.getElementById('result1');
+let button = document.getElementById('button');
+
+function renderCurrency(summ, currency) {
+  currency = selectCurrency.value
+  summ = Number(inputSum.value)
+  return summ*RATE[currency]
+}
+
+button.onclick = function () {
+
+  let converter = renderCurrency();
+  result1.innerText = ` = ${Math.trunc(converter)}`;
+  console.log(renderCurrency())
+}
+
+/* Еще вариант */
+
+const RATES = {usd: 0.9, eur: 1.09,}
+let summa = document.getElementById('summa');
+let selector = document.getElementById('selector')
+let output = document.getElementById('out')
+
+function converter(sum, currency) {
+  return sum*RATES[currency]
+}
+summa.addEventListener('input', function() {
+  let sum = Number(summa.value)
+  let currency = selector.value
+  let out = converter(sum, currency)
+  output.innerText = out
+});
+summa.addEventListener('change', function() {
+  let sum = Number(summa.value)
+  let currency = selector.value
+  let out = converter(sum, currency)
+  output.innerText = out
+});
 
 // task second
 
@@ -60,4 +104,4 @@ function createInvestmentAccount(initialAmount, annualInterestRate) {
 let myAccount = createInvestmentAccount(1500, 3.5);
 // console.log(myAccount.deposit(500))
 // myAccount.getAccountInfo()
-console.log(myAccount.calculateProfit(1))
+// console.log(myAccount.calculateProfit(1))
