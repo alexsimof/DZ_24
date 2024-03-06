@@ -39,10 +39,8 @@ function renderCurrency(summ, currency) {
 }
 
 button.onclick = function () {
-
   let converter = renderCurrency();
-  result1.innerText = ` = ${Math.trunc(converter)}`;
-  console.log(renderCurrency())
+  result1.innerText = ` = ${Math.trunc(converter)} ${selectCurrency.value}`;
 }
 
 /* Еще вариант */
@@ -85,7 +83,8 @@ function createInvestmentAccount(initialAmount, annualInterestRate) {
   }
 
   function calculateProfit(years = 1) {
-    return profit = (cash/100*rate + cash)*years
+    // return profit = (cash/100*rate + cash)*years
+    return profit = cash * Math.pow((1 + rate / 100), years)
   }
 
   function getAccountInfo() {
@@ -103,5 +102,5 @@ function createInvestmentAccount(initialAmount, annualInterestRate) {
 }
 let myAccount = createInvestmentAccount(1500, 3.5);
 // console.log(myAccount.deposit(500))
-// myAccount.getAccountInfo()
+myAccount.getAccountInfo()
 // console.log(myAccount.calculateProfit(1))
